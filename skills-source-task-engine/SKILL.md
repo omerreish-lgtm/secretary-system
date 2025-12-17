@@ -1,6 +1,6 @@
 ---
 name: task-engine
-description: Manage project tasks with Taskmaster MCP integration. Create, organize, prioritize tasks from briefs or brain dumps. Syncs bidirectionally with Taskmaster. Works standalone or with secretary-orchestrator.
+description: Create, organize, and prioritize tasks from briefs or brain dumps. Sync with Taskmaster MCP. Use to plan work, track status, and pick next steps.
 triggers:
   - create tasks
   - organize tasks

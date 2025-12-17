@@ -1,6 +1,6 @@
 ---
 name: secretary-orchestrator
-description: Personal assistant orchestrator for project management. Recognizes intent and coordinates with project-brief, task-engine, delegation-advisor, and project-logger skills. Manages ADD cycle governance. Works standalone or automatically composes with other Secretary skills.
+description: Orchestrate project work: detect intent, run ADD checkpoints, and coordinate project-brief, task-engine, delegation-advisor, and project-logger.
 triggers:
   - מזכירה
   - secretary

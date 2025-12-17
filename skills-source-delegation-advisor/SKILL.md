@@ -1,6 +1,6 @@
 ---
 name: delegation-advisor
-description: Recommend optimal task delegation to Claude Code, Gemini, ChatGPT, Human, Taskmaster, or other MCPs. Analyze task requirements and generate appropriate handoff prompts. Works standalone or with secretary-orchestrator.
+description: Recommend who should do a task (Claude Code, Gemini, ChatGPT, Human, Taskmaster, MCPs) and generate handoff prompts.
 triggers:
   - who should do this
   - delegate

@@ -1,6 +1,6 @@
 ---
 name: project-logger
-description: Record project activities, decisions, and outputs. Query project history and status. Provides institutional memory across sessions. Works standalone or with secretary-orchestrator.
+description: Record project activity, decisions, and outputs; query history and status. Provides institutional memory across sessions.
 triggers:
   - log this
   - record that

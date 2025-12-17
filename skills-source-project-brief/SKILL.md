@@ -1,6 +1,6 @@
 ---
 name: project-brief
-description: Transform brain dumps and project ideas into structured project briefs with clear scope, goals, and success criteria. Works standalone or with secretary-orchestrator. Use when starting a new project or defining venture scope.
+description: Turn ideas/brain dumps into a structured project brief (problem, goals, scope, milestones, success criteria). Use when starting a project.
 triggers:
   - create brief
   - new project

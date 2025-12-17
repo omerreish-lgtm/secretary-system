@@ -156,6 +156,13 @@ skill-name.zip
         └── template.md
 ```
 
+### Phase 4: Final Compliance Pass (Packaging + Cleanup) ✅
+
+- Validated packaging against a known-good reference skill (`skill-creator-v2.skill`): **the ZIP must contain the skill folder at root** (e.g., `project-brief/SKILL.md`), not just `SKILL.md` at ZIP root.
+- Standardized upload artifacts to **`.zip`** files for Claude AI upload (some Claude UIs do not accept the `.skill` extension even though it is a ZIP).
+- Ensured **all `description:` fields are <= 200 characters** (important for Claude’s skill selection).
+- Cleaned the local `~/skills/` folder to avoid confusion and kept only **5 upload files** under `~/skills/secretary-skills/`.
+
 ---
 
 ## Key Challenges & Solutions
@@ -186,7 +193,7 @@ zip -r "${skill}.skill" "$skill/"  # NOT just the contents
 
 ### Challenge 2: Description Length ⚠️
 
-**Problem:** Initial descriptions were too long (>200 characters).
+**Problem:** Initial descriptions were too long (>200 characters), which can harm (or break) Claude’s ability to select skills correctly.
 
 **From Anthropic docs:**
 > "description: A clear description of what the Skill does and when to use it. This is critical—Claude uses this to determine when to invoke your Skill (**200 characters maximum**)."
@@ -195,6 +202,15 @@ zip -r "${skill}.skill" "$skill/"  # NOT just the contents
 1. What it does
 2. When to use it
 3. Key context (bilingual support, integration points)
+
+**Validation (final upload artifacts):**
+```
+delegation-advisor:     116 chars
+project-brief:          138 chars
+project-logger:         121 chars
+secretary-orchestrator: 144 chars
+task-engine:            145 chars
+```
 
 **Example:**
 ```yaml
@@ -268,6 +284,12 @@ gh repo delete omerreish-lgtm/AI-architecture
 gh repo create secretary-system --public --source=. --push
 ```
 
+### Challenge 7: Claude Skill Upload File Extension ❌→✅
+
+**Problem:** Some Claude AI interfaces did not accept `.skill` files for upload even though they are ZIPs.
+
+**Solution:** Provide upload artifacts as `.zip` files (same contents, accepted by the UI).
+
 ---
 
 ## Final Deliverables
@@ -292,7 +314,7 @@ Location: `~/skills/secretary-skills/`
 **Contents:**
 ```
 secretary-system/
-├── skills-packages/          # 5 .skill files for upload
+├── skills-packages/          # 5 .zip files for Claude AI upload (folder-at-root)
 ├── skills-source-*/          # Source code for each skill
 ├── architecture/             # System architecture doc
 ├── agents/                   # Cursor agents (builder agents)
@@ -482,20 +504,16 @@ Total deliverable:    1123 lines
    - Claude will automatically load relevant skills
    - No need to mention which skill to use
 
-### For Claude Code
+### For Claude Code (optional)
 
-1. **Skills are already symlinked:**
-   ```
-   ~/.claude/agents/secretary-orchestrator.md
-   ~/.claude/agents/project-initiator.md
-   ~/.claude/agents/task-manager.md
-   ~/.claude/agents/delegation-advisor.md
-   ~/.claude/agents/project-logger.md
-   ```
+This repo focuses on **Claude AI uploadable skills**. Claude Code support is possible (agents can load skills), but the Claude Code runtime setup is intentionally kept separate from the cleaned `~/skills/` upload folder.
 
-2. **Invoke:**
-   - Same triggers as Claude AI
-   - Agents auto-load the skills
+Typical setup:
+1. Create agent definition files under `~/.claude/agents/`
+2. Reference the relevant skills via the agent `skills:` field
+3. Use Taskmaster MCP tools from within Claude Code
+
+If you want, we can add a `claude-code/` folder to this repo with ready-to-install agent definitions and an install script.
 
 ---
 
@@ -553,5 +571,5 @@ The journey from monolithic bundle to modular architecture taught valuable lesso
 ---
 
 *Document created: December 18, 2025*  
-*Last updated: December 18, 2025*
+*Last updated: December 18, 2025 (post-packaging compliance + cleanup)*
 
