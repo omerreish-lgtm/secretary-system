@@ -1,0 +1,387 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": "setup-1",
+        "title": "Create main directory",
+        "description": "mkdir -p ~/skills/secretary",
+        "status": "pending",
+        "priority": "high",
+        "dependencies": [],
+        "phase": "0-setup"
+      },
+      {
+        "id": "setup-2",
+        "title": "Create references directory",
+        "description": "mkdir ~/skills/secretary/references",
+        "status": "pending",
+        "priority": "high",
+        "dependencies": ["setup-1"],
+        "phase": "0-setup"
+      },
+      {
+        "id": "setup-3",
+        "title": "Create assets directory",
+        "description": "mkdir ~/skills/secretary/assets",
+        "status": "pending",
+        "priority": "high",
+        "dependencies": ["setup-1"],
+        "phase": "0-setup"
+      },
+      {
+        "id": "setup-4",
+        "title": "Create scripts directory",
+        "description": "mkdir ~/skills/secretary/scripts",
+        "status": "pending",
+        "priority": "high",
+        "dependencies": ["setup-1"],
+        "phase": "0-setup"
+      },
+      {
+        "id": "setup-5",
+        "title": "Create agents directory",
+        "description": "mkdir ~/skills/secretary/agents",
+        "status": "pending",
+        "priority": "high",
+        "dependencies": ["setup-1"],
+        "phase": "0-setup"
+      },
+      {
+        "id": "skill-yaml",
+        "title": "SKILL.md: YAML frontmatter",
+        "description": "Create YAML frontmatter with bilingual triggers (מזכירה, secretary, PA, new project, status, delegate)",
+        "status": "pending",
+        "priority": "high",
+        "dependencies": ["setup-1"],
+        "phase": "1a-skill",
+        "acceptanceCriteria": "Triggers on Hebrew + English keywords"
+      },
+      {
+        "id": "skill-intents",
+        "title": "SKILL.md: Intent recognition",
+        "description": "Define intent recognition (PROJECT_INIT, TASK_MANAGE, STATUS_CHECK, DELEGATION, BRAIN_DUMP)",
+        "status": "pending",
+        "priority": "high",
+        "dependencies": ["skill-yaml"],
+        "phase": "1a-skill",
+        "acceptanceCriteria": "5 intents route to correct sub-skills"
+      },
+      {
+        "id": "skill-add-cycle",
+        "title": "SKILL.md: ADD Cycle governance",
+        "description": "Implement ADD Cycle governance (ASSESS→CHECKPOINT→DECIDE→CHECKPOINT→DO→LOG)",
+        "status": "pending",
+        "priority": "high",
+        "dependencies": ["skill-yaml"],
+        "phase": "1a-skill",
+        "acceptanceCriteria": "Mandatory checkpoints before decisions"
+      },
+      {
+        "id": "skill-references",
+        "title": "SKILL.md: References section",
+        "description": "Create references section linking to 4 sub-skill files",
+        "status": "pending",
+        "priority": "high",
+        "dependencies": ["skill-yaml"],
+        "phase": "1a-skill",
+        "acceptanceCriteria": "All 4 files linked with loading conditions"
+      },
+      {
+        "id": "skill-examples",
+        "title": "SKILL.md: Usage examples",
+        "description": "Add 6 bilingual usage examples (3 Hebrew, 3 English)",
+        "status": "pending",
+        "priority": "high",
+        "dependencies": ["skill-intents", "skill-add-cycle", "skill-references"],
+        "phase": "1a-skill",
+        "acceptanceCriteria": "3 Hebrew + 3 English examples"
+      },
+      {
+        "id": "ref-brief",
+        "title": "Create project-brief.md",
+        "description": "Brain dump → structured brief transformation with interactive flow",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": ["setup-2"],
+        "phase": "1b-references",
+        "parallel": true
+      },
+      {
+        "id": "ref-task",
+        "title": "Create task-engine.md",
+        "description": "CRUD + Taskmaster MCP (get_tasks, set_task_status, expand_task)",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": ["setup-2"],
+        "phase": "1b-references",
+        "parallel": true
+      },
+      {
+        "id": "ref-delegation",
+        "title": "Create delegation-advisor.md",
+        "description": "Agent profiles (Claude/Gemini/ChatGPT/Human) + prompt generation",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": ["setup-2"],
+        "phase": "1b-references",
+        "parallel": true
+      },
+      {
+        "id": "ref-logger",
+        "title": "Create project-logger.md",
+        "description": "Activity recording + history queries",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": ["setup-2"],
+        "phase": "1b-references",
+        "parallel": true
+      },
+      {
+        "id": "template-brief",
+        "title": "Create brief_template.md",
+        "description": "Template with: metadata, goals, scope, constraints, stakeholders, milestones",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": ["setup-3"],
+        "phase": "1c-templates",
+        "parallel": true
+      },
+      {
+        "id": "template-tasks",
+        "title": "Create tasks_template.md",
+        "description": "Task structure compatible with Taskmaster MCP format",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": ["setup-3"],
+        "phase": "1c-templates",
+        "parallel": true
+      },
+      {
+        "id": "template-log",
+        "title": "Create log_template.md",
+        "description": "Template with: timestamp, actor, action, output, next steps",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": ["setup-3"],
+        "phase": "1c-templates",
+        "parallel": true
+      },
+      {
+        "id": "agent-orchestrator",
+        "title": "Create secretary-orchestrator.md",
+        "description": "Main agent with skills: secretary, proactive trigger, routes to sub-agents",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": ["skill-examples"],
+        "phase": "1d-agents",
+        "acceptanceCriteria": "Auto-loads secretary skill"
+      },
+      {
+        "id": "agent-initiator",
+        "title": "Create project-initiator.md",
+        "description": "Brain dump processing, brief creation",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": ["agent-orchestrator"],
+        "phase": "1d-agents",
+        "acceptanceCriteria": "Handles PROJECT_INIT, BRAIN_DUMP"
+      },
+      {
+        "id": "agent-task-mgr",
+        "title": "Create task-manager.md",
+        "description": "CRUD with Taskmaster MCP integration",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": ["agent-orchestrator"],
+        "phase": "1d-agents",
+        "acceptanceCriteria": "Taskmaster MCP calls succeed"
+      },
+      {
+        "id": "agent-delegation",
+        "title": "Create delegation-advisor.md agent",
+        "description": "Agent matching, prompt generation",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": ["agent-orchestrator"],
+        "phase": "1d-agents",
+        "acceptanceCriteria": "Recommendations with reasoning"
+      },
+      {
+        "id": "agent-logger",
+        "title": "Create project-logger.md agent",
+        "description": "Activity recording, history queries",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": ["agent-orchestrator"],
+        "phase": "1d-agents",
+        "acceptanceCriteria": "History queries work"
+      },
+      {
+        "id": "script-init",
+        "title": "Create init_project.py",
+        "description": "Initialize new project, copy templates, setup files",
+        "status": "pending",
+        "priority": "low",
+        "dependencies": ["template-brief", "template-tasks", "template-log"],
+        "phase": "1e-scripts"
+      },
+      {
+        "id": "script-sync",
+        "title": "Create sync_taskmaster.py",
+        "description": "Sync living docs ↔ Taskmaster MCP format",
+        "status": "pending",
+        "priority": "low",
+        "dependencies": ["template-tasks"],
+        "phase": "1e-scripts"
+      },
+      {
+        "id": "deploy-symlink",
+        "title": "Create agent symlinks",
+        "description": "ln -s ~/skills/secretary/agents/*.md ~/.claude/agents/",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": ["agent-orchestrator", "agent-initiator", "agent-task-mgr", "agent-delegation", "agent-logger"],
+        "phase": "1f-deploy"
+      },
+      {
+        "id": "deploy-verify",
+        "title": "Verify agent loading",
+        "description": "Verify agents appear in Claude Code agent list",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": ["deploy-symlink"],
+        "phase": "1f-deploy"
+      },
+      {
+        "id": "test-init",
+        "title": "TEST: Project initialization",
+        "description": "Create sample brief from brain dump",
+        "status": "pending",
+        "priority": "high",
+        "dependencies": ["deploy-verify", "ref-brief"],
+        "phase": "2-testing",
+        "acceptanceCriteria": "Brief has all sections"
+      },
+      {
+        "id": "test-tasks",
+        "title": "TEST: Task management",
+        "description": "CRUD via natural language, verify Taskmaster sync",
+        "status": "pending",
+        "priority": "high",
+        "dependencies": ["deploy-verify", "ref-task", "script-sync"],
+        "phase": "2-testing",
+        "acceptanceCriteria": "CRUD + Taskmaster sync works"
+      },
+      {
+        "id": "test-delegation",
+        "title": "TEST: Delegation recommendations",
+        "description": "Verify agent matching + handoff prompts",
+        "status": "pending",
+        "priority": "high",
+        "dependencies": ["deploy-verify", "ref-delegation"],
+        "phase": "2-testing",
+        "acceptanceCriteria": "Recommendations have reasoning"
+      },
+      {
+        "id": "test-logging",
+        "title": "TEST: Logging",
+        "description": "Verify activity recording + history queries",
+        "status": "pending",
+        "priority": "high",
+        "dependencies": ["deploy-verify", "ref-logger"],
+        "phase": "2-testing",
+        "acceptanceCriteria": "All actions logged, queries work"
+      },
+      {
+        "id": "test-e2e",
+        "title": "TEST: End-to-end",
+        "description": "Full workflow: brain dump → brief → tasks → delegation → logging",
+        "status": "pending",
+        "priority": "high",
+        "dependencies": ["test-init", "test-tasks", "test-delegation", "test-logging"],
+        "phase": "2-testing",
+        "acceptanceCriteria": "Full cycle without intervention"
+      },
+      {
+        "id": "package-validate",
+        "title": "package_skill.py: Validation",
+        "description": "Implement SKILL.md validation (frontmatter check)",
+        "status": "pending",
+        "priority": "low",
+        "dependencies": ["test-e2e"],
+        "phase": "3-package"
+      },
+      {
+        "id": "package-collect",
+        "title": "package_skill.py: File collection",
+        "description": "Collect SKILL.md + references/* + assets/* (exclude agents/, scripts/)",
+        "status": "pending",
+        "priority": "low",
+        "dependencies": ["package-validate"],
+        "phase": "3-package"
+      },
+      {
+        "id": "package-zip",
+        "title": "package_skill.py: ZIP creation",
+        "description": "Create .skill ZIP archive",
+        "status": "pending",
+        "priority": "low",
+        "dependencies": ["package-collect"],
+        "phase": "3-package"
+      },
+      {
+        "id": "migrate-generate",
+        "title": "Generate secretary.skill",
+        "description": "Run package_skill.py to generate secretary.skill",
+        "status": "pending",
+        "priority": "low",
+        "dependencies": ["package-zip"],
+        "phase": "3-migrate"
+      },
+      {
+        "id": "migrate-upload",
+        "title": "Upload to Claude AI",
+        "description": "Upload secretary.skill to Claude AI settings",
+        "status": "pending",
+        "priority": "low",
+        "dependencies": ["migrate-generate"],
+        "phase": "3-migrate"
+      },
+      {
+        "id": "migrate-verify",
+        "title": "Verify in Claude AI",
+        "description": "Verify skill triggers and functionality in Claude AI",
+        "status": "pending",
+        "priority": "low",
+        "dependencies": ["migrate-upload"],
+        "phase": "3-migrate"
+      }
+    ],
+    "metadata": {
+      "projectName": "Secretary System",
+      "version": "2.1",
+      "createdAt": "2025-12-17",
+      "lastUpdated": "2025-12-17",
+      "totalTasks": 37,
+      "phases": {
+        "0-setup": 5,
+        "1a-skill": 5,
+        "1b-references": 4,
+        "1c-templates": 3,
+        "1d-agents": 5,
+        "1e-scripts": 2,
+        "1f-deploy": 2,
+        "2-testing": 5,
+        "3-package": 3,
+        "3-migrate": 3
+      },
+      "optimizations": [
+        "Expanded 13 tasks to 37 atomic tasks",
+        "Added acceptance criteria to 15 tasks",
+        "Optimized dependencies for parallel execution",
+        "Maximum parallelism: 8 tasks after setup-1",
+        "Organized by phases for clear progression"
+      ]
+    }
+  }
+}

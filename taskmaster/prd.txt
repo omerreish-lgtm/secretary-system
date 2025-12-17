@@ -1,0 +1,102 @@
+# Secretary System - Personal Assistant Skill Bundle
+
+## Project Overview
+Build a personal assistant system ("המזכירה") - a bundle of Skills that helps manage projects and ventures outside academic scope. The system will be built first in Claude Code (agents + skills), then migrated to Claude AI via packaging script.
+
+## Architecture
+- **Build Once, Instantiate Per Project** model
+- Works in Claude Code as Agents AND as Skills
+- Works in Claude AI as Skills only (after migration)
+- Integrates with Taskmaster MCP for task management
+
+## Phase 1: Claude Code Development
+
+### Task 1: Setup Folder Structure
+Create ~/skills/secretary/ with the following structure:
+- references/ (sub-skill instructions)
+- assets/ (templates)
+- scripts/ (Python utilities)
+- agents/ (Claude Code agent definitions)
+
+### Task 2: Create Main Orchestrator Skill
+Create SKILL.md with:
+- YAML frontmatter (name: secretary, description with Hebrew+English triggers)
+- Intent recognition (PROJECT_INIT, TASK_MANAGE, STATUS_CHECK, DELEGATION, BRAIN_DUMP)
+- ADD Cycle governance (Assess-Decide-Do)
+- References to sub-skill files
+
+### Task 3: Create Project Brief Sub-Skill
+Create references/project-brief.md:
+- Transform brain dumps into structured briefs
+- Template for project definition
+- Interactive conversation flow
+
+### Task 4: Create Task Engine Sub-Skill
+Create references/task-engine.md:
+- Task CRUD operations
+- Taskmaster MCP integration (get_tasks, set_task_status, expand_task)
+- Priority and dependency management
+
+### Task 5: Create Delegation Advisor Sub-Skill
+Create references/delegation-advisor.md:
+- Agent profiles (Claude Code, Gemini, ChatGPT, Human)
+- Task matching logic
+- Prompt generation for handoffs
+
+### Task 6: Create Project Logger Sub-Skill
+Create references/project-logger.md:
+- Activity recording
+- History queries
+- Project status summaries
+
+### Task 7: Create Living Document Templates
+Create assets/:
+- brief_template.md
+- tasks_template.md
+- log_template.md
+
+### Task 8: Create Claude Code Agents
+Create agents/:
+- secretary-orchestrator.md (with skills: secretary)
+- project-initiator.md
+- task-manager.md
+- delegation-advisor.md
+- project-logger.md
+
+### Task 9: Create Utility Scripts
+Create scripts/:
+- init_project.py (initialize new project instance)
+- sync_taskmaster.py (sync with Taskmaster MCP)
+
+### Task 10: Deploy Agents to Claude Code
+Deploy agents to ~/.claude/agents/ for cross-project availability
+
+### Task 11: Test in Claude Code
+Test Secretary System with a sample project:
+- Create a test project brief
+- Add and manage tasks
+- Test delegation recommendations
+- Verify logging
+
+## Phase 2: Claude AI Migration
+
+### Task 12: Create Packaging Script
+Create scripts/package_skill.py:
+- Validate SKILL.md
+- Collect files (SKILL.md, references/*, assets/*)
+- Exclude Claude Code specific files (agents/, scripts/)
+- Create .skill ZIP archive
+
+### Task 13: Migrate to Claude AI
+- Run package_skill.py to create secretary.skill
+- Upload to Claude AI settings
+- Test in Claude AI
+
+## Success Criteria
+1. Secretary System responds to "מזכירה" and "secretary" triggers
+2. Can create project briefs from brain dumps
+3. Tasks sync with Taskmaster MCP
+4. Delegation recommendations work correctly
+5. Activity logging captures all actions
+6. Works in both Claude Code and Claude AI
+
